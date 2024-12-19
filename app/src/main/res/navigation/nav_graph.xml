@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/mainFragment">
+
+    <!-- Main Fragment -->
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.eventfinder.fragments.MainFragment"
+        android:label="Main Fragment"
+        tools:layout="@layout/fragment_main">
+
+        <!-- Navigate to Event List -->
+        <action
+            android:id="@+id/action_mainFragment_to_eventListFragment"
+            app:destination="@id/eventListFragment" />
+
+        <!-- Navigate to Filter Fragment -->
+        <action
+            android:id="@+id/action_mainFragment_to_filterFragment"
+            app:destination="@id/filterFragment" />
+
+        <!-- Navigate to Event Detail -->
+        <action
+            android:id="@+id/action_mainFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment" />
+    </fragment>
+
+    <!-- Event List Fragment -->
+    <fragment
+        android:id="@+id/eventListFragment"
+        android:name="com.example.eventfinder.fragments.EventListFragment"
+        android:label="Event List"
+        tools:layout="@layout/fragment_event_list">
+
+        <!-- Navigate to Event Detail -->
+        <action
+            android:id="@+id/action_eventListFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment" />
+    </fragment>
+
+    <!-- Event Detail Fragment -->
+    <fragment
+        android:id="@+id/eventDetailFragment"
+        android:name="com.example.eventfinder.fragments.EventDetailFragment"
+        android:label="Event Detail">
+        <argument
+            android:name="event"
+            app:argType="com.example.eventfinder.models.Event" />
+    </fragment>
+
+    <!-- Filter Fragment -->
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.example.eventfinder.fragments.FilterFragment"
+        android:label="Filter"
+        tools:layout="@layout/fragment_filter" />
+</navigation>

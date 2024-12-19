@@ -1,0 +1,8 @@
+<resources>
+    <!-- Define the custom theme for your app -->
+    <style name="Theme.EventFinder" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/blackpearl</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/teal_200</item>
+    </style>
+</resources>
