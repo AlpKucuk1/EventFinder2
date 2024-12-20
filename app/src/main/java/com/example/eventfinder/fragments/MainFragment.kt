@@ -7,31 +7,33 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eventfinder.R
-import com.example.eventfinder.adapters.EventDetails
+import com.example.eventfinder.EventDetails
 import com.example.eventfinder.databinding.FragmentMainBinding
-import com.example.eventfinder.models.Event
+import com.example.eventfinder.Event
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    private lateinit var events: List<Event>
     private lateinit var binding: FragmentMainBinding
+    private val events = mutableListOf<Event>() // Mutable list for dynamic updates
+    private lateinit var adapter: EventDetails
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMainBinding.bind(view)
 
-        // Load events
-        events = loadEvents()
-
         // Set up RecyclerView with the EventDetails adapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = EventDetails(events) { event ->
+        adapter = EventDetails { event ->
             val action = MainFragmentDirections.actionMainFragmentToEventDetailFragment(event)
             findNavController().navigate(action)
         }
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = adapter
+
+        // Load and display events
+        loadEvents()
 
         // Sort button popup
-        binding.sortButton.setOnClickListener { view ->
-            val popupMenu = PopupMenu(requireContext(), view)
+        binding.sortButton.setOnClickListener { sortButtonView ->
+            val popupMenu = PopupMenu(requireContext(), sortButtonView)
             popupMenu.menuInflater.inflate(R.menu.filter_menu, popupMenu.menu)
             popupMenu.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
@@ -52,6 +54,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
             popupMenu.show()
         }
+
     }
 
     private fun filterEvents(criteria: String) {
@@ -61,16 +64,16 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             "Date" -> events.sortedBy { it.date }
             else -> events
         }
-        binding.recyclerView.adapter = EventDetails(filteredEvents) { event ->
-            val action = MainFragmentDirections.actionMainFragmentToEventDetailFragment(event)
-            findNavController().navigate(action)
-        }
+        adapter.submitList(filteredEvents) // Use submitList for ListAdapter
     }
 
-    private fun loadEvents(): List<Event> {
-        return listOf(
-            Event(1, "Event A", "Location X", "2024-12-01", "10:00 AM", "Description A"),
-            Event(2, "Event B", "Location Y", "2024-12-02", "2:00 PM", "Description B"),
+    private fun loadEvents() {
+        events.addAll(
+            listOf(
+                Event(1, "Event A", "Location X", "2024-12-01", "10:00 AM", "Description A"),
+                Event(2, "Event B", "Location Y", "2024-12-02", "2:00 PM", "Description B")
+            )
         )
+        adapter.submitList(events.toList()) // Populate the adapter
     }
 }

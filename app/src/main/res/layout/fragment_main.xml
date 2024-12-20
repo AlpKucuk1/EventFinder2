@@ -6,12 +6,13 @@
     <data>
         <variable
             name="mainFragment"
-            type="com.example.eventfinder.MainFragment" />
+            type="com.example.eventfinder.fragments.MainFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".fragments.MainFragment">
 
         <!-- Header Layout with Events title and Sort button -->
         <LinearLayout

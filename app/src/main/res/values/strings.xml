@@ -1,8 +1,8 @@
 <resources>
-    <!-- Define the custom theme for your app -->
-    <style name="Theme.EventFinder" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/blackpearl</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
-        <item name="colorAccent">@color/teal_200</item>
-    </style>
+    <string name="filter_by_date">Filter by Date</string>
+    <string name="filter_by_location">Filter by Location</string>
+    <string name="filter_button_text">Filter</string>
+    <string name="filter_by_name">Filter by Name</string>
+    <string name="filter_by_city">Filter by City</string>
+    <string name="app_name">Event Finder</string>
 </resources>

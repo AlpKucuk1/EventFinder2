@@ -27,6 +27,19 @@
             app:destination="@id/eventDetailFragment" />
     </fragment>
 
+    <!-- Register Fragment -->
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.eventfinder.fragments.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register">
+
+        <!-- Navigate to Event List -->
+        <action
+            android:id="@+id/action_registerFragment_to_eventListFragment"
+            app:destination="@id/eventListFragment" />
+    </fragment>
+
     <!-- Event List Fragment -->
     <fragment
         android:id="@+id/eventListFragment"
@@ -47,7 +60,7 @@
         android:label="Event Detail">
         <argument
             android:name="event"
-            app:argType="com.example.eventfinder.models.Event" />
+            app:argType="com.example.eventfinder.Event" />
     </fragment>
 
     <!-- Filter Fragment -->

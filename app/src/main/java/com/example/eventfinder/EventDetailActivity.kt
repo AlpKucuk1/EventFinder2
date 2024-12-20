@@ -3,7 +3,7 @@ package com.example.eventfinder
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.assignment1.databinding.ActivityEventDetailBinding
+import com.example.eventfinder.databinding.ActivityEventDetailBinding
 
 class EventDetailActivity : AppCompatActivity() {
 

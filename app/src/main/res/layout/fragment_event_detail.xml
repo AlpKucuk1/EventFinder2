@@ -6,7 +6,7 @@
     <data>
         <variable
             name="eventDetailFragment"
-            type="com.example.eventfinder.EventDetailFragment" />
+            type="com.example.eventfinder.fragments.EventDetailFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
