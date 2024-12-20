@@ -21,7 +21,6 @@ class EventListFragment : Fragment(R.layout.fragment_event_list) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentEventListBinding.bind(view)
 
-        // Initialize RecyclerView
         adapter = EventDetails { event ->
             val action = EventListFragmentDirections.actionEventListFragmentToEventDetailFragment(event)
             findNavController().navigate(action)
@@ -29,9 +28,12 @@ class EventListFragment : Fragment(R.layout.fragment_event_list) {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
-        // Observe events LiveData
         eventViewModel.events.observe(viewLifecycleOwner) { events ->
             adapter.submitList(events)
         }
+
+        // Ensure fetchEvents is called here
+        eventViewModel.fetchEvents()
     }
+
 }

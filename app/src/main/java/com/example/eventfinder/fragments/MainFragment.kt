@@ -10,6 +10,8 @@ import com.example.eventfinder.R
 import com.example.eventfinder.EventDetails
 import com.example.eventfinder.databinding.FragmentMainBinding
 import com.example.eventfinder.Event
+import com.google.firebase.firestore.FirebaseFirestore
+import android.widget.Toast
 
 class MainFragment : Fragment(R.layout.fragment_main) {
     private lateinit var binding: FragmentMainBinding
@@ -68,12 +70,18 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun loadEvents() {
-        events.addAll(
-            listOf(
-                Event(1, "Event A", "Location X", "2024-12-01", "10:00 AM", "Description A"),
-                Event(2, "Event B", "Location Y", "2024-12-02", "2:00 PM", "Description B")
-            )
-        )
-        adapter.submitList(events.toList()) // Populate the adapter
+        val firestore = FirebaseFirestore.getInstance()
+        firestore.collection("events")
+            .get()
+            .addOnSuccessListener { result ->
+                val loadedEvents = result.documents.mapNotNull { it.toObject(Event::class.java) }
+                events.clear() // Clear the old list
+                events.addAll(loadedEvents) // Add new data
+                adapter.submitList(events.toList()) // Update adapter
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(context, "Failed to load events: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
+
 }

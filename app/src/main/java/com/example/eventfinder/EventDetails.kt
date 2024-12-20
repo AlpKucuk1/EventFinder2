@@ -15,10 +15,11 @@ class EventDetails(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(event: Event) {
-            binding.event = event
+            binding.event = event // Binds to the variable in XML
             binding.root.setOnClickListener { onItemClick(event) }
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         val binding = ItemEventBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -28,6 +29,8 @@ class EventDetails(
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
+
+
 
     class DiffCallback : DiffUtil.ItemCallback<Event>() {
         override fun areItemsTheSame(oldItem: Event, newItem: Event) = oldItem.id == newItem.id
