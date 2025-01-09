@@ -47,16 +47,35 @@ EventFinder is designed to provide an effortless experience for users to manage 
    - Download the `google-services.json` file and place it in the `app/` directory.
 
 ### **Steps to Set Up the Project**
+
+#### **Prerequisites**
+1. Install **Android Studio** (Latest version recommended).
+2. Create a **Firebase Project**:
+   - Add an Android app to Firebase.
+   - Download the `google-services.json` file and place it in the `app/` directory.
+
+#### **Steps**
 1. Clone the repository:
    ```bash
    git clone https://github.com/AlpKucuk1/EventFinder2.git
 Open the project in Android Studio.
-Sync the project with Gradle files.
+Sync the project with Gradle files:
+If prompted, allow Android Studio to download necessary dependencies.
 Configure Firebase:
-Enable Firebase Authentication for email/password.
-Set up Firestore with an events collection:
-Fields: id, name, location, date, time, description.
-Run the application on an emulator or a physical device.
+Enable Firebase Authentication with email/password in the Firebase console.
+Set up Firestore with a collection named events and the following fields:
+id (integer)
+name (string)
+location (string)
+date (string)
+time (string)
+description (string)
+Build and run the application:
+Connect an Android device or use an emulator.
+Ensure debugging options are enabled if using a physical device.
+Test the application:
+Register a new user or log in with an existing account.
+Explore the event list, view event details, and try sorting/filtering options.
 Usage Instructions
 Login and Registration
 New Users:
@@ -64,11 +83,12 @@ Register with a valid email and password.
 Existing Users:
 Log in to access the main event list.
 Event Management
-View all events in the main screen in a card-based format.
+View all events on the main screen in a card-based format.
 Tap an event card to view detailed information, including a countdown timer.
 Sorting and Filtering
-Sort events by name, location, or date using the sort button.
-Filter events based on criteria for quick access.
+Use the sort/filter menu to:
+Sort events by name, location, or date.
+Filter events dynamically based on your preferences.
 Contributions
 Alp Küçük
 Created the foundation for the code and the main alpha version of EventFinder.
