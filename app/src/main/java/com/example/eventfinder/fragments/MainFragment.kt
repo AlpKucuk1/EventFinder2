@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +14,6 @@ import com.example.eventfinder.databinding.FragmentMainBinding
 import com.example.eventfinder.Event
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import android.widget.Toast
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.animation.AnimationUtils
@@ -31,6 +31,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         // SharedPreferences başlat
         val sharedPreferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+        // Kullanıcı adını yükle
+        loadUsername()
 
         // Set up RecyclerView with the EventDetails adapter
         adapter = EventDetails { event ->
@@ -130,5 +133,21 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             .addOnFailureListener { e ->
                 Toast.makeText(context, "Failed to load events: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun loadUsername() {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if (userId != null) {
+            val firestore = FirebaseFirestore.getInstance()
+            firestore.collection("users").document(userId)
+                .get()
+                .addOnSuccessListener { document ->
+                    val username = document.getString("username")
+                    binding.eventsTitle.text = "Welcome, $username" // Kullanıcı adı başlığa eklenir
+                }
+                .addOnFailureListener {
+                    Toast.makeText(context, "Failed to load username", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 }
