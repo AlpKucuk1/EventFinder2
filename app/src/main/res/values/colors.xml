@@ -20,4 +20,7 @@
     <color name="textColorSecondary">#212121</color>
     <color name="scrollbarThumbColor">#BDBDBD</color>
     <color name="secondaryColor">#FF5722</color>
+    <color name="textPrimary">#212121</color> <!-- Ana metin rengi -->
+    <color name="textSecondary">#757575</color> <!-- İkincil metin rengi -->
+
 </resources>
