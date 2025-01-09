@@ -48,71 +48,75 @@ EventFinder is designed to provide an effortless experience for users to manage 
 
 ### **Steps to Set Up the Project**
 
-#### **Prerequisites**
-1. Install **Android Studio** (Latest version recommended).
-2. Create a **Firebase Project**:
-   - Add an Android app to Firebase.
-   - Download the `google-services.json` file and place it in the `app/` directory.
-
 #### **Steps**
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/AlpKucuk1/EventFinder2.git
-Open the project in Android Studio.
-Sync the project with Gradle files:
-If prompted, allow Android Studio to download necessary dependencies.
-Configure Firebase:
-Enable Firebase Authentication with email/password in the Firebase console.
-Set up Firestore with a collection named events and the following fields:
-id (integer)
-name (string)
-location (string)
-date (string)
-time (string)
-description (string)
-Build and run the application:
-Connect an Android device or use an emulator.
-Ensure debugging options are enabled if using a physical device.
-Test the application:
-Register a new user or log in with an existing account.
-Explore the event list, view event details, and try sorting/filtering options.
-Usage Instructions
-Login and Registration
-New Users:
-Register with a valid email and password.
-Existing Users:
-Log in to access the main event list.
-Event Management
-View all events on the main screen in a card-based format.
-Tap an event card to view detailed information, including a countdown timer.
-Sorting and Filtering
-Use the sort/filter menu to:
-Sort events by name, location, or date.
-Filter events dynamically based on your preferences.
-Contributions
-Alp Küçük
-Created the foundation for the code and the main alpha version of EventFinder.
-Developed:
-Login and Register pages.
-BindingAdapters for efficient UI updates.
-ViewModel for lifecycle-aware data handling.
-Firebase API integration for Firestore and Authentication.
-Arda Küçük
-Focused on enhancing the user experience with animations and UI elements.
-Developed:
-Welcome page and its animations.
-"Remember Me" button functionality.
-MainFragment logic and design.
-XML layouts for:
-FragmentEventDetail
-FragmentWelcome
-Ömer Furkan Akbağ
-Played a key role in app navigation and design consistency.
-Developed:
-NavGraph setup for seamless navigation.
-EventListFragment logic and integration.
-Designed:
-Login/Register page layouts.
-FragmentRegister XML.
-FragmentWelcome XML.
-FragmentEventDetail XML.
+1. Open the project in **Android Studio**.
+2. Sync the project with Gradle files:
+   - If prompted, allow Android Studio to download all necessary dependencies.
+3. Configure Firebase:
+   - Enable **Firebase Authentication** with email/password in the Firebase console.
+   - Set up Firestore with a collection named `events` and the following fields:
+     - `id` (integer)
+     - `name` (string)
+     - `location` (string)
+     - `date` (string)
+     - `time` (string)
+     - `description` (string)
+4. Build and run the application:
+   - Connect an Android device or use an emulator.
+   - Ensure debugging options are enabled if using a physical device.
+5. Test the application:
+   - Register a new user or log in with an existing account.
+   - Explore the event list, view event details, and try sorting/filtering options.
+
+---
+
+## **Usage Instructions**
+
+### **Login and Registration**
+- **New Users**:
+  - Register with a valid email and password.
+- **Existing Users**:
+  - Log in to access the main event list.
+
+### **Event Management**
+1. View all events on the main screen in a card-based format.
+2. Tap an event card to view detailed information, including a countdown timer.
+
+### **Sorting and Filtering**
+- Use the sort/filter menu to:
+  - Sort events by name, location, or date.
+  - Filter events dynamically based on your preferences.
+
+---
+
+## **Contributions**
+
+### **Alp Küçük**
+- Created the foundation for the code and the main alpha version of EventFinder.
+- Developed:
+  - Login and Register pages.
+  - BindingAdapters for efficient UI updates.
+  - ViewModel for lifecycle-aware data handling.
+  - Firebase API integration for Firestore and Authentication.
+
+### **Arda Küçük**
+- Focused on enhancing the user experience with animations and UI elements.
+- Developed:
+  - Welcome page and its animations.
+  - "Remember Me" button functionality.
+  - MainFragment logic and design.
+  - XML layouts for:
+    - `FragmentEventDetail`
+    - `FragmentWelcome`
+
+### **Ömer Furkan Akbağ**
+- Played a key role in app navigation and design consistency.
+- Developed:
+  - NavGraph setup for seamless navigation.
+  - EventListFragment logic and integration.
+  - Designed:
+    - Login/Register page layouts.
+    - `FragmentRegister` XML.
+    - `FragmentWelcome` XML.
+    - `FragmentEventDetail` XML.
+
