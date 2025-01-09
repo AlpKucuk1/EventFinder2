@@ -5,7 +5,7 @@ EventFinder is a dynamic Android application that enables users to discover, exp
 ---
 
 ## **Team Members**
-- **Arda Küçük** (Developer)
+- **Arda Küçük** (TeamLeader,Developer)
 - **Ömer Furkan Akbağ** (Developer)
 - **Alp Küçük** (Developer)
 
