@@ -2,7 +2,18 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/welcomeFragment">
+
+    <!-- Welcome Fragment -->
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.example.eventfinder.fragments.WelcomeFragment"
+        android:label=""
+        tools:layout="@layout/fragment_welcome">
+        <action
+            android:id="@+id/action_welcomeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 
     <!-- Login Fragment -->
     <fragment
@@ -33,7 +44,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.eventfinder.fragments.MainFragment"
-        android:label="Main Fragment"
+        android:label="Event Finder"
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_eventListFragment"
@@ -44,7 +55,6 @@
         <action
             android:id="@+id/action_mainFragment_to_eventDetailFragment"
             app:destination="@id/eventDetailFragment" />
-        <!-- Yeni action: MainFragment'ten LoginFragment'e geçiş -->
         <action
             android:id="@+id/action_mainFragment_to_loginFragment"
             app:destination="@id/loginFragment" />

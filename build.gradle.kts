@@ -9,4 +9,5 @@ buildscript {
 
 plugins {
     kotlin("jvm") version "1.8.10" apply false
+    alias(libs.plugins.kotlin.android) apply false
 }
