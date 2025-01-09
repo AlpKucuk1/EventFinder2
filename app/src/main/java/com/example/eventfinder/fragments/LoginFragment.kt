@@ -3,6 +3,8 @@ package com.example.eventfinder.fragments
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -29,7 +31,29 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
         }
 
+        // Login butonu için tıklama animasyonu ve işlem
         binding.loginButton.setOnClickListener {
+            // Animasyonu başlat
+            val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.button_click)
+
+            // Animasyon tamamlandıktan sonra geri dönüş sağla
+            animation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: android.view.animation.Animation?) {
+                    // Animasyon başladığında yapılacak işlemler
+                }
+
+                override fun onAnimationEnd(animation: android.view.animation.Animation?) {
+                    // Animasyon tamamlandı, buton eski haline dönecek
+                    binding.loginButton.clearAnimation()
+                }
+
+                override fun onAnimationRepeat(animation: android.view.animation.Animation?) {
+                    // Tekrar eden animasyonlar için yapılacak işlemler
+                }
+            })
+
+            binding.loginButton.startAnimation(animation)
+
             val email = binding.emailInput.text.toString()
             val password = binding.passwordInput.text.toString()
 
@@ -52,7 +76,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
         }
 
+
         binding.goToRegisterButton.setOnClickListener {
+            // Register butonu için tıklama animasyonu
+            val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.button_click)
+            binding.goToRegisterButton.startAnimation(animation)
+
+            // Kayıt ekranına yönlendirme
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
     }
