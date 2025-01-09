@@ -21,7 +21,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         binding = FragmentRegisterBinding.bind(view)
 
         binding.registerButton.setOnClickListener {
-            // Animasyonu başlat
+            // Start Animation
             val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.button_click)
             binding.registerButton.startAnimation(animation)
 
