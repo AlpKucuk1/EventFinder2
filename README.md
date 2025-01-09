@@ -5,7 +5,7 @@ EventFinder is an Android application that allows users to explore and manage va
 ---
 
 ## **Team Members**
-- **Arda Küçük** (Team Lead, Developer)
+- **Arda Küçük** (Developer)
 - **Ömer Furkan Akbağ** (Developer)
 - **Alp Küçük** (Developer)
 
