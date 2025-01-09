@@ -1,5 +1,6 @@
 package com.example.eventfinder.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.PopupMenu
@@ -17,16 +18,19 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.animation.AnimationUtils
 
-
-
 class MainFragment : Fragment(R.layout.fragment_main) {
     private lateinit var binding: FragmentMainBinding
     private val events = mutableListOf<Event>() // Mutable list for dynamic updates
     private lateinit var adapter: EventDetails
+    private val PREFS_NAME = "user_prefs"
+    private val REMEMBER_ME_KEY = "remember_me"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMainBinding.bind(view)
+
+        // SharedPreferences başlat
+        val sharedPreferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
         // Set up RecyclerView with the EventDetails adapter
         adapter = EventDetails { event ->
@@ -41,6 +45,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         // Load and display events
         loadEvents()
+
         // Search bar ekleme ve dinleme
         binding.searchBar.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -77,10 +82,18 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         // Sign out button functionality
         binding.signOutButton.setOnClickListener {
+            // Oturum durumunu sıfırla
+            sharedPreferences.edit().putBoolean(REMEMBER_ME_KEY, false).apply()
+
+            // Firebase Authentication'dan çıkış yap
             FirebaseAuth.getInstance().signOut()
+
+            // LoginFragment'e yönlendir
             findNavController().navigate(R.id.action_mainFragment_to_loginFragment)
+            Toast.makeText(context, "Logged Out", Toast.LENGTH_SHORT).show()
         }
     }
+
     // Search özelliği
     private fun searchEvents(query: String) {
         val filteredList = if (query.isNotEmpty()) {
