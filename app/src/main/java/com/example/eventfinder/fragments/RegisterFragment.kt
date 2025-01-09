@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.eventfinder.R
 import com.example.eventfinder.databinding.FragmentRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterFragment : Fragment(R.layout.fragment_register) {
 
@@ -25,20 +26,41 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             binding.registerButton.startAnimation(animation)
 
             // Kayıt işlemleri
+            val firstName = binding.firstNameInput.text.toString()
+            val lastName = binding.lastNameInput.text.toString()
+            val username = binding.usernameInput.text.toString()
             val email = binding.emailInput.text.toString()
             val password = binding.passwordInput.text.toString()
 
-            if (email.isNotBlank() && password.isNotBlank()) {
+            if (firstName.isNotBlank() && lastName.isNotBlank() && username.isNotBlank() &&
+                email.isNotBlank() && password.isNotBlank()) {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            findNavController().navigate(R.id.action_registerFragment_to_mainFragment)
+                            // Kullanıcı bilgilerini Firestore'a kaydet
+                            val userId = auth.currentUser?.uid
+                            val userMap = hashMapOf(
+                                "firstName" to firstName,
+                                "lastName" to lastName,
+                                "username" to username,
+                                "email" to email
+                            )
+
+                            val db = FirebaseFirestore.getInstance()
+                            db.collection("users").document(userId!!)
+                                .set(userMap)
+                                .addOnSuccessListener {
+                                    findNavController().navigate(R.id.action_registerFragment_to_mainFragment)
+                                }
+                                .addOnFailureListener { e ->
+                                    Toast.makeText(context, "Failed to save user info: ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
                         } else {
                             Toast.makeText(context, "Registration failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                         }
                     }
             } else {
-                Toast.makeText(context, "Email and password must not be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "All fields must not be empty", Toast.LENGTH_SHORT).show()
             }
         }
     }
