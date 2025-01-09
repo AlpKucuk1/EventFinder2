@@ -26,7 +26,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            findNavController().navigate(R.id.action_registerFragment_to_eventListFragment)
+                            findNavController().navigate(R.id.action_registerFragment_to_mainFragment)
                         } else {
                             Toast.makeText(context, "Registration failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                         }

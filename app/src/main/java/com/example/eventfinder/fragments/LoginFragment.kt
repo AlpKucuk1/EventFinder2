@@ -26,7 +26,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            findNavController().navigate(R.id.action_loginFragment_to_eventListFragment)
+                            findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
                         } else {
                             Toast.makeText(context, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                         }
