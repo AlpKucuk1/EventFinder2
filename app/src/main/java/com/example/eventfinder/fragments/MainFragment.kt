@@ -15,6 +15,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import android.widget.Toast
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.animation.AnimationUtils
+
 
 
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -31,6 +33,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             val action = MainFragmentDirections.actionMainFragmentToEventDetailFragment(event)
             findNavController().navigate(action)
         }
+        val layoutAnimationController = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        binding.recyclerView.layoutAnimation = layoutAnimationController
+
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
