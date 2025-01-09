@@ -13,6 +13,9 @@ import com.example.eventfinder.Event
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import android.widget.Toast
+import android.text.Editable
+import android.text.TextWatcher
+
 
 class MainFragment : Fragment(R.layout.fragment_main) {
     private lateinit var binding: FragmentMainBinding
@@ -33,6 +36,15 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         // Load and display events
         loadEvents()
+        // Search bar ekleme ve dinleme
+        binding.searchBar.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                searchEvents(s.toString())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
 
         // Sort button popup
         binding.sortButton.setOnClickListener { sortButtonView ->
@@ -63,6 +75,18 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             FirebaseAuth.getInstance().signOut()
             findNavController().navigate(R.id.action_mainFragment_to_loginFragment)
         }
+    }
+    // Search özelliği
+    private fun searchEvents(query: String) {
+        val filteredList = if (query.isNotEmpty()) {
+            events.filter {
+                it.name.contains(query, ignoreCase = true) ||
+                        it.location.contains(query, ignoreCase = true)
+            }
+        } else {
+            events
+        }
+        adapter.submitList(filteredList)
     }
 
     private fun filterEvents(criteria: String) {
