@@ -2,6 +2,7 @@ package com.example.eventfinder.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -19,6 +20,11 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         binding = FragmentRegisterBinding.bind(view)
 
         binding.registerButton.setOnClickListener {
+            // Animasyonu başlat
+            val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.button_click)
+            binding.registerButton.startAnimation(animation)
+
+            // Kayıt işlemleri
             val email = binding.emailInput.text.toString()
             val password = binding.passwordInput.text.toString()
 
