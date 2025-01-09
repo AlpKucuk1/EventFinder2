@@ -15,7 +15,7 @@
         android:background="@color/white"
         tools:context=".fragments.MainFragment">
 
-        <!-- Header Layout with Events title and Sort button -->
+        <!-- Header Layout with Events title, Sort button, and Sign Out button -->
         <androidx.cardview.widget.CardView
             android:id="@+id/headerCard"
             android:layout_width="match_parent"
@@ -53,6 +53,17 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/filter_button_text"
                     android:src="@drawable/ic_sort"
+                    app:tint="@android:color/white"
+                    android:padding="8dp" />
+
+                <!-- Sign out button -->
+                <ImageButton
+                    android:id="@+id/signOutButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/sign_out_button_text"
+                    android:src="@drawable/ic_sign_out"
                     app:tint="@android:color/white"
                     android:padding="8dp" />
 

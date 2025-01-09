@@ -5,4 +5,5 @@
     <string name="filter_by_name">Filter by Name</string>
     <string name="filter_by_city">Filter by City</string>
     <string name="app_name">Event Finder</string>
+    <string name="sign_out_button_text">Sign Out</string>
 </resources>

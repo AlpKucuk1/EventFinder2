@@ -10,6 +10,7 @@ import com.example.eventfinder.R
 import com.example.eventfinder.EventDetails
 import com.example.eventfinder.databinding.FragmentMainBinding
 import com.example.eventfinder.Event
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import android.widget.Toast
 
@@ -57,6 +58,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             popupMenu.show()
         }
 
+        // Sign out button functionality
+        binding.signOutButton.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            findNavController().navigate(R.id.action_mainFragment_to_loginFragment)
+        }
     }
 
     private fun filterEvents(criteria: String) {
@@ -83,5 +89,4 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 Toast.makeText(context, "Failed to load events: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
-
 }

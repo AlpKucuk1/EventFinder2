@@ -44,6 +44,10 @@
         <action
             android:id="@+id/action_mainFragment_to_eventDetailFragment"
             app:destination="@id/eventDetailFragment" />
+        <!-- Yeni action: MainFragment'ten LoginFragment'e geçiş -->
+        <action
+            android:id="@+id/action_mainFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <!-- Event List Fragment -->

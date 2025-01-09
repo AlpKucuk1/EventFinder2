@@ -19,5 +19,5 @@
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="textColorSecondary">#212121</color>
     <color name="scrollbarThumbColor">#BDBDBD</color>
-
+    <color name="secondaryColor">#FF5722</color>
 </resources>
