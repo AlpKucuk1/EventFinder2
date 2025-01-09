@@ -68,6 +68,5 @@ Event Details:
 Tap on an event to view its detailed information and countdown timer.
 Sort & Filter:
 Use the sort button to filter events by location or other criteria.
-Contributors
-This project was developed by the following team members:
+
 
